@@ -273,7 +273,7 @@
             });
 
             // Construct the message
-            let whatsappMessage = `Informasi Pelanggan:\nNama: ${name}\nAlamat: ${address}\nTelepon: ${phone}\n\nDaftar Produk:\n`;
+            let whatsappMessage = `*Informasi Pelanggan*:\nNama: ${name}\nAlamat: ${address}\nTelepon: ${phone}\n\n*Daftar Produk*:\n`;
 
             tableData.forEach((item, index) => {
                 whatsappMessage += `Item ${index + 1}:\n`;
@@ -282,7 +282,7 @@
             });
 
             // Add total price to the message
-            whatsappMessage += `Total Harga: Rp ${totalPrice.toFixed(2)}\n\nTerimakasih sudah membeli atau mengguakan jasa kami`;
+            whatsappMessage += `*Total Harga*: Rp ${totalPrice.toFixed(2)}\n\n_Terimakasih sudah membeli atau menggunakan jasa kami_`;
 
             // Encode the message for WhatsApp URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
