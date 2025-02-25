@@ -2,9 +2,11 @@
 - add discount
 - add dp
 
+25/2/25
+- date transaction
+- print page via txt
+
 Next:
 - login/logout
-- print page
 - header/footer column for print page
-- date transaction
 - js obfuscator
