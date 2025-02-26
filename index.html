@@ -208,9 +208,9 @@
 
         // Generate a random invoice number
         function generateInvoiceNumber() {
-            const characters = 'BOSLAUNDRY08577300966';
+            const characters = 'BOSLAUNDRY1234567890';
             let result = '';
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 8; i++) {
                 result += characters.charAt(Math.floor(Math.random() * characters.length));
             }
             return result;
