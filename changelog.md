@@ -6,6 +6,9 @@
 - date transaction
 - print page via txt
 
+26/2/25
+- random invoice number
+
 Next:
 - login/logout
 - header/footer column for print page
