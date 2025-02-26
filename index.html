@@ -188,15 +188,14 @@
                     <!-- Summary products will be displayed here -->
                 </tbody>
             </table>
-            <div class="total-price" id="summaryTotalPrice">Total Price: $0</div>
-            <div class="total-price" id="summaryDiscount">Discount: $0</div>
-            <div class="total-price" id="summaryDP">Down Payment (DP): $0</div>
-            <div class="total-price" id="summaryFinalPrice">Final Price: $0</div>
+            <div class="total-price" id="summaryTotalPrice">Total Price: Rp0</div>
+            <div class="total-price" id="summaryDiscount">Discount: Rp0</div>
+            <div class="total-price" id="summaryDP">Down Payment (DP): Rp0</div>
+            <div class="total-price" id="summaryFinalPrice">Final Price: Rp0</div>
         </div>
 
         <!-- Action Buttons -->
         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <button id="printButton">Print</button>
             <button id="exportTXTButton">Export TXT</button>
             <button id="sendToWhatsApp">Send to WhatsApp</button>
         </div>
@@ -243,7 +242,7 @@
 
             newRow.innerHTML = `
                 <td>${productName}</td>
-                <td>$${productPrice.toFixed(2)}</td>
+                <td>Rp ${productPrice.toFixed(2)}</td>
             `;
 
             tableBody.appendChild(newRow);
@@ -294,12 +293,12 @@
             });
 
             // Update total price in the summary section
-            document.getElementById('summaryTotalPrice').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
-            document.getElementById('totalPrice').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+            document.getElementById('summaryTotalPrice').textContent = `Total Price: Rp ${totalPrice.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `Total Price: Rp ${totalPrice.toFixed(2)}`;
 
             // Update final price after applying discount and DP
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Final Price: $${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `Final Price: Rp ${finalPrice.toFixed(2)}`;
         }
 
         // Apply discount functionality
@@ -315,10 +314,10 @@
             discountAmount = (totalPrice * discountPercentage) / 100;
 
             // Update discount and final price in the summary section
-            document.getElementById('summaryDiscount').textContent = `Discount: $${discountAmount.toFixed(2)}`;
+            document.getElementById('summaryDiscount').textContent = `Discount: Rp ${discountAmount.toFixed(2)}`;
 
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Final Price: $${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `Final Price: Rp ${finalPrice.toFixed(2)}`;
         });
 
         // Apply Down Payment (DP) functionality
@@ -334,10 +333,10 @@
             downPaymentAmount = dpValue;
 
             // Update DP and final price in the summary section
-            document.getElementById('summaryDP').textContent = `Down Payment (DP): $${downPaymentAmount.toFixed(2)}`;
+            document.getElementById('summaryDP').textContent = `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}`;
 
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Final Price: $${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `Final Price: Rp ${finalPrice.toFixed(2)}`;
         });
 
         // Print functionality
@@ -376,10 +375,10 @@
                 txtContent += `${index + 1}. ${product}\n`;
             });
 
-            txtContent += `\nTotal Price: $${totalPrice.toFixed(2)}\n`;
-            txtContent += `Discount: $${discountAmount.toFixed(2)}\n`;
-            txtContent += `Down Payment (DP): $${downPaymentAmount.toFixed(2)}\n`;
-            txtContent += `Final Price: $${(totalPrice - discountAmount - downPaymentAmount).toFixed(2)}\n`;
+            txtContent += `\nTotal Price: Rp ${totalPrice.toFixed(2)}\n`;
+            txtContent += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
+            txtContent += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
+            txtContent += `Final Price: Rp ${(totalPrice - discountAmount - downPaymentAmount).toFixed(2)}\n`;
 
             // Create a Blob and download the TXT file
             const blob = new Blob([txtContent], { type: 'text/plain' });
@@ -424,10 +423,10 @@
 
             // Add total price, discount, down payment, and final price to the message
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            whatsappMessage += `Total Price: $${totalPrice.toFixed(2)}\n`;
-            whatsappMessage += `Discount: $${discountAmount.toFixed(2)}\n`;
-            whatsappMessage += `Down Payment (DP): $${downPaymentAmount.toFixed(2)}\n`;
-            whatsappMessage += `Final Price: $${finalPrice.toFixed(2)}`;
+            whatsappMessage += `Total Price: Rp ${totalPrice.toFixed(2)}\n`;
+            whatsappMessage += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
+            whatsappMessage += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
+            whatsappMessage += `Final Price: Rp ${finalPrice.toFixed(2)}`;
 
             // Encode the message for WhatsApp URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
