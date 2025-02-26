@@ -98,15 +98,6 @@
                 font-size: 12px;
             }
         }
-
-	textarea
-    {
-
-        border:1px solid #999999
-        width:99%;
-        margin:5px 0;
-        padding:1%;
-    }
     </style>
 </head>
 <body>
@@ -114,12 +105,12 @@
         <h1>Aplikasi Kasir Instant POS</h1>
 
          <!-- POS Information  Section -->
-        <div class="section">
+         <div class="section">
             <h2>Info Usaha dan Nota</h2>
             <label for="infoPOSHeader">Keterangan Usaha:</label><br/>
-            <textarea class="textarea" id="infoPOSHeader" placeholder="Bandar Deterjen - Menjual Peralatan dan Perlengakapan Laundry"></textarea><br/><br/>
-	    <label for="infoPOSFooter">Keterangan Nota:</label><br/>
-            <textarea class="textarea" id="infoPOSFooter"  placeholder="Terimakasih telah membeli produk/jasa kami. Dapatkan gratis ongkir setiap transaksi 600K."></textarea>
+            <input type="textarea" id="infoPOSHeader" rows="4" cols="50" placeholder="Bandar Deterejen Sahabat Usaha Anda"></textarea><br/><br/>
+			<label for="infoPOSFooter">Keterangan Nota:</label><br/>
+            <input type="textarea" id="infoPOSFooter" rows="4" cols="50" placeholder="Terimakasih telah membeli produk/jasa kami. Dapatkan gratis ongkir setiap transaksi 600K."></textarea>
         </div>
 		
          <!-- Section 1: Name, Address, Phone -->
