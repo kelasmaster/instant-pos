@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Kasir Instant POS</title>
+    <title>Instant POS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -101,66 +101,66 @@
     </style>
 </head>
 <body>
-   <div class="container">
-        <h1>Aplikasi Kasir Instant POS</h1>
+    <div class="container">
+        <h1>Instant POS</h1>
 
         <!-- Section 1: Name, Address, Phone -->
-         <div class="section">
-            <h2>Informasi Pelanggan</h2>
+        <div class="section">
+            <h2>Customer Information</h2>
             <form id="customerForm">
-                <label for="name">Nama:</label>
-                <input type="text" id="name" placeholder="Tulis nama Anda" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
 
-                <label for="address">Alamat:</label>
-                <input type="text" id="address" placeholder="Tulis alamat lengkap" required>
+                <label for="address">Address:</label>
+                <input type="text" id="address" placeholder="Enter your address" required>
 
-                <label for="phone">Telepon:</label>
-                <input type="tel" id="phone" placeholder="Tulis nomor Whatsapp" required>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
             </form>
         </div>
 
         <!-- Transaction Date Section -->
-         <div class="section">
-            <h2>Tanggal Transaaksi</h2>
-            <label for="transactionDate">Pilih Tanggal:</label>
+        <div class="section">
+            <h2>Transaction Date</h2>
+            <label for="transactionDate">Select Transaction Date:</label>
             <input type="date" id="transactionDate" required>
         </div>
 
         <!-- Section 2: Product Name, Product Price, Add Product -->
-       <div class="section">
-            <h2>Informasi Produk</h2>
+        <div class="section">
+            <h2>Product Information</h2>
             <form id="productForm">
-                <label for="productName">Nama Produk:</label>
-                <input type="text" id="productName" placeholder="Tulis nama produk/jasa" required>
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" placeholder="Enter product name" required>
 
-                <label for="productPrice">Harga Produk:</label>
-                <input type="number" id="productPrice" placeholder="Tulis harga produk" required>
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" placeholder="Enter product price" required>
 
-                <button type="submit">Tambah Produk</button>
+                <button type="submit">Add Product</button>
             </form>
         </div>
 
-         <!-- Discount Section -->
-       <div class="section discount-section">
-            <label for="discountPercentage">Discount (%):</label>
-            <input type="number" id="discountPercentage" placeholder="Tulis persentase discount" min="0" max="100">
-            <button id="applyDiscount">Terapkan Discount</button>
+        <!-- Discount Section -->
+        <div class="section discount-section">
+            <label for="discountPercentage">Discount Percentage (%):</label>
+            <input type="number" id="discountPercentage" placeholder="Enter discount percentage" min="0" max="100">
+            <button id="applyDiscount">Apply Discount</button>
         </div>
 
         <!-- Down Payment (DP) Section -->
         <div class="section dp-section">
             <label for="downPayment">Down Payment (DP):</label>
-            <input type="number" id="downPayment" placeholder="Tulis jumlah DP">
-            <button id="applyDP">Terapkan DP</button>
+            <input type="number" id="downPayment" placeholder="Enter down payment amount">
+            <button id="applyDP">Apply DP</button>
         </div>
 
         <!-- Display Table -->
-        <h2>Daftar Produk</h2>
+        <h2>Product List</h2>
         <table id="productTable">
             <thead>
                 <tr>
-                    <th>Nama Produk</th>
-                    <th>Harga Produk</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -169,34 +169,35 @@
         </table>
 
         <!-- Total Price -->
-        <div class="total-price" id="totalPrice">Total Harga: Rp0</div>
+        <div class="total-price" id="totalPrice">Total Price: $0</div>
 
         <!-- Summary Section -->
         <div class="summary-section" id="summarySection">
-            <h2>Transaksi Anda</h2>
+            <h2>Summary</h2>
+            <p><strong>Invoice Number:</strong> <span id="summaryInvoiceNumber">Tidak Muncul</span></p>
             <div id="summaryCustomerInfo"></div>
-            <p><strong>Tanggal Transaksi:</strong> <span id="summaryTransactionDate">Belum Diset</span></p>
+            <p><strong>Transaction Date:</strong> <span id="summaryTransactionDate">Not Set</span></p>
             <table id="summaryProductTable">
                 <thead>
                     <tr>
-                         <th>Nama Produk</th>
-                        <th>Harga Produk</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Summary products will be displayed here -->
                 </tbody>
             </table>
-           <div class="total-price" id="summaryTotalPrice">Total Harga: Rp0</div>
-            <div class="total-price" id="summaryDiscount">Discount: Rp0</div>
-            <div class="total-price" id="summaryDP">Down Payment (DP): Rp0</div>
-            <div class="total-price" id="summaryFinalPrice">Harga Akhir: Rp0</div>
+            <div class="total-price" id="summaryTotalPrice">Total Price: $0</div>
+            <div class="total-price" id="summaryDiscount">Discount: $0</div>
+            <div class="total-price" id="summaryDP">Down Payment (DP): $0</div>
+            <div class="total-price" id="summaryFinalPrice">Final Price: $0</div>
         </div>
 
         <!-- Action Buttons -->
         <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-            <button id="exportTXTButton">Cetak Via Txt</button>
-            <button id="sendToWhatsApp">Kirim Ke WhatsApp</button>
+            <button id="exportTXTButton">Export TXT</button>
+            <button id="sendToWhatsApp">Send to WhatsApp</button>
         </div>
     </div>
 
@@ -204,6 +205,20 @@
         let totalPrice = 0;
         let discountAmount = 0;
         let downPaymentAmount = 0;
+
+        // Generate a random invoice number
+        function generateInvoiceNumber() {
+            const characters = 'BOSLAUNDRY0123456789';
+            let result = '';
+            for (let i = 0; i < 8; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        // Initialize the invoice number
+        const invoiceNumber = generateInvoiceNumber();
+        document.getElementById('summaryInvoiceNumber').textContent = invoiceNumber;
 
         // Handle adding products to the table and updating total price
         document.getElementById('productForm').addEventListener('submit', function(event) {
@@ -227,7 +242,7 @@
 
             newRow.innerHTML = `
                 <td>${productName}</td>
-                <td>Rp ${productPrice.toFixed(2)}</td>
+                <td>$${productPrice.toFixed(2)}</td>
             `;
 
             tableBody.appendChild(newRow);
@@ -249,9 +264,9 @@
             // Display customer information in the summary section
             const summaryCustomerInfo = document.getElementById('summaryCustomerInfo');
             summaryCustomerInfo.innerHTML = `
-                <p><strong>Nama:</strong> ${name}</p>
-                <p><strong>Alamat:</strong> ${address}</p>
-                <p><strong>Telepon:</strong> ${phone}</p>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
             `;
 
             // Get transaction date
@@ -278,12 +293,12 @@
             });
 
             // Update total price in the summary section
-          document.getElementById('summaryTotalPrice').textContent = `Total Harga: Rp ${totalPrice.toFixed(2)}`;
-            document.getElementById('totalPrice').textContent = `Total Harga: Rp ${totalPrice.toFixed(2)}`;
+            document.getElementById('summaryTotalPrice').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `Total Price: $${totalPrice.toFixed(2)}`;
 
             // Update final price after applying discount and DP
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Harga Akhir: Rp ${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `Final Price: $${finalPrice.toFixed(2)}`;
         }
 
         // Apply discount functionality
@@ -299,10 +314,10 @@
             discountAmount = (totalPrice * discountPercentage) / 100;
 
             // Update discount and final price in the summary section
-          document.getElementById('summaryDiscount').textContent = `Discount: Rp ${discountAmount.toFixed(2)}`;
+            document.getElementById('summaryDiscount').textContent = `Discount: $${discountAmount.toFixed(2)}`;
 
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Total Harga: Rp ${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `Final Price: $${finalPrice.toFixed(2)}`;
         });
 
         // Apply Down Payment (DP) functionality
@@ -318,10 +333,10 @@
             downPaymentAmount = dpValue;
 
             // Update DP and final price in the summary section
-           document.getElementById('summaryDP').textContent = `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}`;
+            document.getElementById('summaryDP').textContent = `Down Payment (DP): $${downPaymentAmount.toFixed(2)}`;
 
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Harga Akhir: Rp ${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `Final Price: $${finalPrice.toFixed(2)}`;
         });
 
         // Print functionality
@@ -348,28 +363,29 @@
             });
 
             // Construct the TXT content
-            let txtContent = `Transaksi Anda\n\nInformasi Pelanggan\n\n`;
-            txtContent += `Nama: ${name}\n`;
-            txtContent += `Alamat: ${address}\n`;
-            txtContent += `Telepon: ${phone}\n`;
-            txtContent += `Tanggal Transaksi: ${transactionDate}\n\n`;
-            txtContent += `Daftar Produk:\n`;
+            let txtContent = `Invoice Number: ${invoiceNumber}\n`;
+            txtContent += `Customer Information:\n`;
+            txtContent += `Name: ${name}\n`;
+            txtContent += `Address: ${address}\n`;
+            txtContent += `Phone: ${phone}\n`;
+            txtContent += `Transaction Date: ${transactionDate}\n\n`;
+            txtContent += `Product List:\n`;
 
             products.forEach((product, index) => {
                 txtContent += `${index + 1}. ${product}\n`;
             });
 
-            txtContent += `\nTotal Harga: Rp ${totalPrice.toFixed(2)}\n`;
-            txtContent += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
-            txtContent += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
-            txtContent += `Harga Akhir: Rp ${(totalPrice - discountAmount - downPaymentAmount).toFixed(2)}\n\nTerimakasih sudah membeli atau menggunakan jasa kami.`;
+            txtContent += `\nTotal Price: $${totalPrice.toFixed(2)}\n`;
+            txtContent += `Discount: $${discountAmount.toFixed(2)}\n`;
+            txtContent += `Down Payment (DP): $${downPaymentAmount.toFixed(2)}\n`;
+            txtContent += `Final Price: $${(totalPrice - discountAmount - downPaymentAmount).toFixed(2)}\n`;
 
             // Create a Blob and download the TXT file
             const blob = new Blob([txtContent], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'transaksi_anda.txt';
+            a.download = 'price_list_summary.txt';
             a.click();
             URL.revokeObjectURL(url);
         });
@@ -381,7 +397,6 @@
             const address = document.getElementById('address').value;
             const phone = document.getElementById('phone').value;
             const transactionDate = document.getElementById('transactionDate').value;
-			const invoiceNumber = document.getElementById('invoiceNumber').value;
 
             // Get product data from the main table
             const tableData = [];
@@ -397,20 +412,21 @@
             });
 
             // Construct the message
-            let whatsappMessage = `*Informasi Pelanggan*:\nNama: ${name}\nAlamat: ${address}\nTelepon: ${phone}\nTanggal Transaksi: ${transactionDate}\n\n*Daftar Produk*:\n`;
+            let whatsappMessage = `Invoice Number: ${invoiceNumber}\n`;
+            whatsappMessage += `Customer Information:\nName: ${name}\nAddress: ${address}\nPhone: ${phone}\nTransaction Date: ${transactionDate}\n\nProduct List:\n`;
 
             tableData.forEach((item, index) => {
                 whatsappMessage += `Item ${index + 1}:\n`;
-                whatsappMessage += `Produk: ${item.productName}\n`;
-                whatsappMessage += `Harga: ${item.productPrice}\n\n`;;
+                whatsappMessage += `Product: ${item.productName}\n`;
+                whatsappMessage += `Price: ${item.productPrice}\n\n`;
             });
 
             // Add total price, discount, down payment, and final price to the message
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-             whatsappMessage += `Total Harga: Rp ${totalPrice.toFixed(2)}\n`;
-            whatsappMessage += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
-            whatsappMessage += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
-            whatsappMessage += `Harga Akhir: Rp ${finalPrice.toFixed(2)}\n\n_Terimakasih sudah membeli atau menggunakan jasa kami_`;
+            whatsappMessage += `Total Price: $${totalPrice.toFixed(2)}\n`;
+            whatsappMessage += `Discount: $${discountAmount.toFixed(2)}\n`;
+            whatsappMessage += `Down Payment (DP): $${downPaymentAmount.toFixed(2)}\n`;
+            whatsappMessage += `Final Price: $${finalPrice.toFixed(2)}`;
 
             // Encode the message for WhatsApp URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
