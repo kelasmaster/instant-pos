@@ -363,7 +363,7 @@
             });
 
             // Construct the TXT content
-            let txtContent = `Nomor Invoice: BD-${invoiceNumber}\n`;
+            let txtContent = `Nomor Invoice: BD - ${invoiceNumber}\n`;
             txtContent += `Informasi Pelanggan:\n`;
             txtContent += `Nama: ${name}\n`;
             txtContent += `Alamat: ${address}\n`;
@@ -412,7 +412,7 @@
             });
 
             // Construct the message
-            let whatsappMessage = `Nomor Invoice: BD-${invoiceNumber}\n`;
+            let whatsappMessage = `Nomor Invoice: BD - ${invoiceNumber}\n`;
             whatsappMessage += `*Informasi Pelanggan*:\nNama: ${name}\nAlamat: ${address}\nTelepon: ${phone}\nTanggal Transaksi: ${transactionDate}\n\n*Daftar Produk*:\n`;
 
             tableData.forEach((item, index) => {
@@ -426,7 +426,7 @@
             whatsappMessage += `Harga Total: Rp ${totalPrice.toFixed(2)}\n`;
             whatsappMessage += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
             whatsappMessage += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
-            whatsappMessage += `Harga Akhir: Rp ${finalPrice.toFixed(2)}\n\n_Terimakasih sudah membeli atau menggunakan jasa kami_`;
+            whatsappMessage += `Harga Akhir: Rp ${finalPrice.toFixed(2)}\n\n_Terimakasih sudah membeli atau menggunakan jasa kami_\n`;
 
             // Encode the message for WhatsApp URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
