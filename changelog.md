@@ -11,5 +11,5 @@
 
 Next:
 - login/logout
-- header/footer column for print page
+- header/footer column for print page, header untuk logo dan nama usaha, footer untuk informasi
 - js obfuscator
