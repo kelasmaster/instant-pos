@@ -363,7 +363,7 @@
             });
 
             // Construct the TXT content
-            let txtContent = `Nomor Invoice: BD - ${invoiceNumber}\n`;
+            let txtContent = `Nomor Invoice: ${invoiceNumber}\n`;
             txtContent += `Informasi Pelanggan:\n`;
             txtContent += `Nama: ${name}\n`;
             txtContent += `Alamat: ${address}\n`;
@@ -412,7 +412,7 @@
             });
 
             // Construct the message
-            let whatsappMessage = `Nomor Invoice: BD - ${invoiceNumber}\n`;
+            let whatsappMessage = `Nomor Invoice: ${invoiceNumber}\n`;
             whatsappMessage += `*Informasi Pelanggan*:\nNama: ${name}\nAlamat: ${address}\nTelepon: ${phone}\nTanggal Transaksi: ${transactionDate}\n\n*Daftar Produk*:\n`;
 
             tableData.forEach((item, index) => {
