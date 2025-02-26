@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant POS Aplikasi Kasir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .total-price, .discount-section, .dp-section {
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .summary-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 10px;
+            }
+
+            input, button {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Instant POS Aplikasi Kasir</h1>
+
+        <!-- Bagian 1: Informasi Pelanggan -->
+        <div class="section">
+            <h2>Informasi Pelanggan</h2>
+            <form id="customerForm">
+                <label for="name">Nama:</label>
+                <input type="text" id="name" placeholder="Masukkan nama Anda" required>
+
+                <label for="address">Alamat:</label>
+                <input type="text" id="address" placeholder="Masukkan alamat Anda" required>
+
+                <label for="phone">Nomor Telepon:</label>
+                <input type="tel" id="phone" placeholder="Masukkan nomor telepon Anda" required>
+            </form>
+        </div>
+
+        <!-- Bagian Tanggal Transaksi -->
+        <div class="section">
+            <h2>Tanggal Transaksi</h2>
+            <label for="transactionDate">Pilih Tanggal Transaksi:</label>
+            <input type="date" id="transactionDate" required>
+        </div>
+
+        <!-- Bagian 2: Informasi Produk -->
+        <div class="section">
+            <h2>Informasi Produk</h2>
+            <form id="productForm">
+                <label for="productName">Nama Produk:</label>
+                <input type="text" id="productName" placeholder="Masukkan nama produk" required>
+
+                <label for="productPrice">Harga Produk:</label>
+                <input type="number" id="productPrice" placeholder="Masukkan harga produk" required>
+
+                <button type="submit">Tambah Produk</button>
+            </form>
+        </div>
+
+        <!-- Bagian Diskon -->
+        <div class="section discount-section">
+            <label for="discountPercentage">Persentase Diskon (%):</label>
+            <input type="number" id="discountPercentage" placeholder="Masukkan persentase diskon" min="0" max="100">
+            <button id="applyDiscount">Terapkan Diskon</button>
+        </div>
+
+        <!-- Bagian Uang Muka (DP) -->
+        <div class="section dp-section">
+            <label for="downPayment">Uang Muka (DP):</label>
+            <input type="number" id="downPayment" placeholder="Masukkan jumlah uang muka">
+            <button id="applyDP">Terapkan DP</button>
+        </div>
+
+        <!-- Tabel Produk -->
+        <h2>Daftar Produk</h2>
+        <table id="productTable">
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga Produk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Produk akan ditambahkan secara dinamis -->
+            </tbody>
+        </table>
+
+        <!-- Total Harga -->
+        <div class="total-price" id="totalPrice">Total Harga: Rp0</div>
+
+        <!-- Bagian Ringkasan -->
+        <div class="summary-section" id="summarySection">
+            <h2>Ringkasan</h2>
+            <p><strong>Nomor Invoice:</strong> <span id="summaryInvoiceNumber">Belum Dibuat</span></p>
+            <div id="summaryCustomerInfo"></div>
+            <p><strong>Tanggal Transaksi:</strong> <span id="summaryTransactionDate">Belum Diatur</span></p>
+            <table id="summaryProductTable">
+                <thead>
+                    <tr>
+                        <th>Nama Produk</th>
+                        <th>Harga Produk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Produk ringkasan akan ditampilkan di sini -->
+                </tbody>
+            </table>
+            <div class="total-price" id="summaryTotalPrice">Total Harga: Rp0</div>
+            <div class="total-price" id="summaryDiscount">Diskon: Rp0</div>
+            <div class="total-price" id="summaryDP">Uang Muka (DP): Rp0</div>
+            <div class="total-price" id="summaryFinalPrice">Harga Akhir: Rp0</div>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+            <button id="exportTXTButton">Ekspor TXT</button>
+            <button id="sendToWhatsApp">Kirim ke WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        let totalPrice = 0;
+        let discountAmount = 0;
+        let downPaymentAmount = 0;
+
+        // Fungsi untuk menghasilkan nomor invoice acak
+        function generateInvoiceNumber() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 8; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        // Inisialisasi nomor invoice
+        const invoiceNumber = generateInvoiceNumber();
+        document.getElementById('summaryInvoiceNumber').textContent = invoiceNumber;
+
+        // Menangani penambahan produk ke tabel dan pembaruan total harga
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Mendapatkan nilai input
+            const productName = document.getElementById('productName').value;
+            const productPrice = parseFloat(document.getElementById('productPrice').value);
+
+            if (isNaN(productPrice)) {
+                alert("Silakan masukkan harga yang valid.");
+                return;
+            }
+
+            // Memperbarui total harga
+            totalPrice += productPrice;
+
+            // Membuat baris baru di tabel utama
+            const tableBody = document.querySelector('#productTable tbody');
+            const newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td>${productName}</td>
+                <td>Rp${productPrice.toLocaleString()}</td>
+            `;
+
+            tableBody.appendChild(newRow);
+
+            // Mengosongkan formulir
+            document.getElementById('productForm').reset();
+
+            // Memperbarui bagian ringkasan
+            updateSummary();
+        });
+
+        // Fungsi untuk memperbarui bagian ringkasan
+        function updateSummary() {
+            // Mendapatkan informasi pelanggan
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+
+            // Menampilkan informasi pelanggan di bagian ringkasan
+            const summaryCustomerInfo = document.getElementById('summaryCustomerInfo');
+            summaryCustomerInfo.innerHTML = `
+                <p><strong>Nama:</strong> ${name}</p>
+                <p><strong>Alamat:</strong> ${address}</p>
+                <p><strong>Nomor Telepon:</strong> ${phone}</p>
+            `;
+
+            // Mendapatkan tanggal transaksi
+            const transactionDate = document.getElementById('transactionDate').value;
+            document.getElementById('summaryTransactionDate').textContent = transactionDate || 'Belum Diatur';
+
+            // Mendapatkan data produk dari tabel utama
+            const rows = document.querySelectorAll('#productTable tbody tr');
+            const summaryTableBody = document.querySelector('#summaryProductTable tbody');
+            summaryTableBody.innerHTML = ''; // Menghapus data sebelumnya
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const productName = cells[0].innerText;
+                const productPrice = cells[1].innerText;
+
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${productName}</td>
+                    <td>${productPrice}</td>
+                `;
+
+                summaryTableBody.appendChild(newRow);
+            });
+
+            // Memperbarui total harga di bagian ringkasan
+            document.getElementById('summaryTotalPrice').textContent = `Total Harga: Rp${totalPrice.toLocaleString()}`;
+            document.getElementById('totalPrice').textContent = `Total Harga: Rp${totalPrice.toLocaleString()}`;
+
+            // Memperbarui harga akhir setelah menerapkan diskon dan DP
+            const finalPrice = totalPrice - discountAmount - downPaymentAmount;
+            document.getElementById('summaryFinalPrice').textContent = `Harga Akhir: Rp${finalPrice.toLocaleString()}`;
+        }
+
+        // Fungsi untuk menerapkan diskon
+        document.getElementById('applyDiscount').addEventListener('click', function() {
+            const discountPercentage = parseFloat(document.getElementById('discountPercentage').value);
+
+            if (isNaN(discountPercentage) || discountPercentage < 0 || discountPercentage > 100) {
+                alert("Silakan masukkan persentase diskon yang valid antara 0 dan 100.");
+                return;
+            }
+
+            // Menghitung jumlah diskon
+            discountAmount = (totalPrice * discountPercentage) / 100;
+
+            // Memperbarui diskon dan harga akhir di bagian ringkasan
+            document.getElementById('summaryDiscount').textContent = `Diskon: Rp${discountAmount.toLocaleString()}`;
+
+            const finalPrice = totalPrice - discountAmount - downPaymentAmount;
+            document.getElementById('summaryFinalPrice').textContent = `Harga Akhir: Rp${finalPrice.toLocaleString()}`;
+        });
+
+        // Fungsi untuk menerapkan uang muka (DP)
+        document.getElementById('applyDP').addEventListener('click', function() {
+            const dpValue = parseFloat(document.getElementById('downPayment').value);
+
+            if (isNaN(dpValue) || dpValue < 0) {
+                alert("Silakan masukkan jumlah uang muka yang valid.");
+                return;
+            }
+
+            // Memperbarui jumlah uang muka
+            downPaymentAmount = dpValue;
+
+            // Memperbarui DP dan harga akhir di bagian ringkasan
+            document.getElementById('summaryDP').textContent = `Uang Muka (DP): Rp${downPaymentAmount.toLocaleString()}`;
+
+            const finalPrice = totalPrice - discountAmount - downPaymentAmount;
+            document.getElementById('summaryFinalPrice').textContent = `Harga Akhir: Rp${finalPrice.toLocaleString()}`;
+        });
+
+        // Fungsi cetak
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        // Fungsi ekspor TXT
+        document.getElementById('exportTXTButton').addEventListener('click', function() {
+            // Mendapatkan informasi pelanggan
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const transactionDate = document.getElementById('transactionDate').value;
+
+            // Mendapatkan data produk dari tabel utama
+            const rows = document.querySelectorAll('#productTable tbody tr');
+            const products = [];
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const productName = cells[0].innerText;
+                const productPrice = cells[1].innerText;
+                products.push(`${productName}: ${productPrice}`);
+            });
+
+            // Membuat konten TXT
+            let txtContent = `Nomor Invoice: ${invoiceNumber}\n`;
+            txtContent += `Informasi Pelanggan:\n`;
+            txtContent += `Nama: ${name}\n`;
+            txtContent += `Alamat: ${address}\n`;
+            txtContent += `Nomor Telepon: ${phone}\n`;
+            txtContent += `Tanggal Transaksi: ${transactionDate}\n\n`;
+            txtContent += `Daftar Produk:\n`;
+
+            products.forEach((product, index) => {
+                txtContent += `${index + 1}. ${product}\n`;
+            });
+
+            txtContent += `\nTotal Harga: Rp${totalPrice.toLocaleString()}\n`;
+            txtContent += `Diskon: Rp${discountAmount.toLocaleString()}\n`;
+            txtContent += `Uang Muka (DP): Rp${downPaymentAmount.toLocaleString()}\n`;
+            txtContent += `Harga Akhir: Rp${(totalPrice - discountAmount - downPaymentAmount).toLocaleString()}\n`;
+
+            // Membuat Blob dan mengunduh file TXT
+            const blob = new Blob([txtContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ringkasan_daftar_harga.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Fungsi kirim ke WhatsApp
+        document.getElementById('sendToWhatsApp').addEventListener('click', function() {
+            // Mendapatkan informasi pelanggan
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const transactionDate = document.getElementById('transactionDate').value;
+
+            // Mendapatkan data produk dari tabel utama
+            const tableData = [];
+            const rows = document.querySelectorAll('#productTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowData = {
+                    productName: cells[0].innerText,
+                    productPrice: cells[1].innerText
+                };
+                tableData.push(rowData);
+            });
+
+            // Membuat pesan WhatsApp
+            let whatsappMessage = `Nomor Invoice: ${invoiceNumber}\n`;
+            whatsappMessage += `Informasi Pel
