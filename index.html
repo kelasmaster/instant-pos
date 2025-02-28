@@ -242,7 +242,7 @@
 
             newRow.innerHTML = `
                 <td>${productName}</td>
-                <td>Rp ${productPrice.toFixed(2)}</td>
+                <td>&#82; &#112; ${productPrice.toFixed(2)}</td>
             `;
 
             tableBody.appendChild(newRow);
@@ -262,11 +262,11 @@
             const phone = document.getElementById('phone').value;
 
             // Display customer information in the summary section
-            const summaryCustomerInfo = document.getElementById('summaryCustomerInfo');
+           const summaryCustomerInfo = document.getElementById('summaryCustomerInfo');
             summaryCustomerInfo.innerHTML = `
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Address:</strong> ${address}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
+                <p><strong>&#78; &#97; &#109; &#97; &#58;</strong> ${name}</p>
+                <p><strong>&#65; &#108; &#97; &#109; &#97; &#116; &#58;</strong> ${address}</p>
+                <p><strong>&#84; &#101; &#108; &#101; &#112; &#111; &#110; &#58;</strong> ${phone}</p>
             `;
 
             // Get transaction date
@@ -293,12 +293,12 @@
             });
 
             // Update total price in the summary section
-            document.getElementById('summaryTotalPrice').textContent = `Total Price: Rp ${totalPrice.toFixed(2)}`;
-            document.getElementById('totalPrice').textContent = `Total Price: Rp ${totalPrice.toFixed(2)}`;
+           document.getElementById('summaryTotalPrice').textContent = `&#84; &#111; &#116; &#97; &#108; &#32; &#72; &#97; &#114; &#103; &#97; &#58; &#32; &#82; &#112; ${totalPrice.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `Total Harga: Rp ${totalPrice.toFixed(2)}`;
 
             // Update final price after applying discount and DP
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Final Price: Rp ${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `&#84; &#111; &#116; &#97; &#108; &#32; &#72; &#97; &#114; &#103; &#97; &#58; &#32; &#82; &#112; ${finalPrice.toFixed(2)}`;
         }
 
         // Apply discount functionality
@@ -314,10 +314,10 @@
             discountAmount = (totalPrice * discountPercentage) / 100;
 
             // Update discount and final price in the summary section
-            document.getElementById('summaryDiscount').textContent = `Discount: Rp ${discountAmount.toFixed(2)}`;
+            document.getElementById('summaryDiscount').textContent = `&#68; &#105; &#115; &#99; &#111; &#117; &#110; &#116; &#58; &#32; &#82; &#112; ${discountAmount.toFixed(2)}`;
 
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Final Price: Rp ${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `&#72; &#97; &#114; &#103; &#97; &#32; &#65; &#107; &#104; &#105; &#114; &#58; &#32; &#82; &#112; ${finalPrice.toFixed(2)}`;
         });
 
         // Apply Down Payment (DP) functionality
@@ -333,10 +333,10 @@
             downPaymentAmount = dpValue;
 
             // Update DP and final price in the summary section
-            document.getElementById('summaryDP').textContent = `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}`;
+            document.getElementById('summaryDP').textContent = `&#68; &#111; &#119; &#110; &#32; &#80; &#97; &#121; &#109; &#101; &#110; &#116; &#32; &#40; &#68; &#80; &#41; &#58; &#32; &#82; &#112; ${downPaymentAmount.toFixed(2)}`;
 
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            document.getElementById('summaryFinalPrice').textContent = `Final Price: Rp ${finalPrice.toFixed(2)}`;
+            document.getElementById('summaryFinalPrice').textContent = `&#72; &#97; &#114; &#103; &#97; &#32; &#65; &#107; &#104; &#105; &#114; &#58; &#32; &#82; &#112; ${finalPrice.toFixed(2)}`;
         });
 
     
@@ -360,23 +360,23 @@
             });
 
             // Construct the TXT content
-            let txtContent = `Nomor Invoice: ${invoiceNumber}\n`;
-            txtContent += `Informasi Pelanggan:\n`;
-            txtContent += `Nama: ${name}\n`;
-            txtContent += `Alamat: ${address}\n`;
-            txtContent += `Telepon: ${phone}\n`;
-            txtContent += `Tanggal Transaksi: ${transactionDate}\n\n`;
-            txtContent += `Daftar Produk:\n`;
+            let txtContent = `&#78; &#111; &#109; &#111; &#114; &#32; &#73; &#110; &#118; &#111; &#105; &#99; &#101; &#58; ${invoiceNumber}\n`;
+            txtContent += `&#73; &#110; &#102; &#111; &#114; &#109; &#97; &#115; &#105; &#32; &#80; &#101; &#108; &#97; &#110; &#103; &#103; &#97; &#110; &#58;\n`;
+            txtContent += `&#78; &#97; &#109; &#97; &#58; ${name}\n`;
+            txtContent += `&#65; &#108; &#97; &#109; &#97; &#116; &#58; ${address}\n`;
+            txtContent += `&#84; &#101; &#108; &#101; &#112; &#111; &#110; &#58; ${phone}\n`;
+            txtContent += `&#84; &#97; &#110; &#103; &#103; &#97; &#108; &#32; &#84; &#114; &#97; &#110; &#115; &#97; &#107; &#115; &#105; &#58; ${transactionDate}\n\n`;
+            txtContent += `&#68; &#97; &#102; &#116; &#97; &#114; &#32; &#80; &#114; &#111; &#100; &#117; &#107; &#58;\n`;
 
             products.forEach((product, index) => {
                 txtContent += `${index + 1}. ${product}\n`;
             });
 
-            txtContent += `\nTotal Harga: Rp ${totalPrice.toFixed(2)}\n`;
-            txtContent += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
-            txtContent += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
+            txtContent += `\n&#84; &#111; &#116; &#97; &#108; &#32; &#72; &#97; &#114; &#103; &#97; &#58; &#32; &#82; &#112; ${totalPrice.toFixed(2)}\n`;
+            txtContent += `&#68; &#105; &#115; &#99; &#111; &#117; &#110; &#116; &#58; &#32; &#82; &#112; ${discountAmount.toFixed(2)}\n`;
+            txtContent += `&#68; &#111; &#119; &#110; &#32; &#80; &#97; &#121; &#109; &#101; &#110; &#116; &#32; &#40; &#68; &#80; &#41; &#58; &#32; &#82; &#112; ${downPaymentAmount.toFixed(2)}\n`;
             txtContent += `Harga Akhir: Rp ${(totalPrice - discountAmount - downPaymentAmount).toFixed(2)}\n\n`;
-            txtContent += `Terimakasih sudah membeli produk kami\n`;
+            txtContent += `&#84; &#101; &#114; &#105; &#109; &#97; &#107; &#97; &#115; &#105; &#104; &#32; &#115; &#117; &#100; &#97; &#104; &#32; &#109; &#101; &#109; &#98; &#101; &#108; &#105; &#32; &#112; &#114; &#111; &#100; &#117; &#107; &#32; &#107; &#97; &#109; &#105;\n`;
 
             // Create a Blob and download the TXT file
             const blob = new Blob([txtContent], { type: 'text/plain' });
@@ -410,22 +410,22 @@
             });
 
             // Construct the message
-            let whatsappMessage = `Nomor Invoice: ${invoiceNumber}\n`;
-            whatsappMessage += `*Informasi Pelanggan*:\nNama: ${name}\nAlamat: ${address}\nTelepon: ${phone}\nTanggal Transaksi: ${transactionDate}\n\n*Daftar Produk*:\n`;
+            let whatsappMessage = `&#78; &#111; &#109; &#111; &#114; &#32; &#73; &#110; &#118; &#111; &#105; &#99; &#101;: ${invoiceNumber}\n`;
+            whatsappMessage += `*&#73; &#110; &#102; &#111; &#114; &#109; &#97; &#115; &#105; &#32; &#80; &#101; &#108; &#97; &#110; &#103; &#103; &#97; &#110;*:\n&#78; &#97; &#109; &#97;: ${name}\n&#65; &#108; &#97; &#109; &#97; &#116;: ${address}\n&#84; &#101; &#108; &#101; &#112; &#111; &#110;: ${phone}\n&#84; &#97; &#110; &#103; &#103; &#97; &#108; &#32; &#84; &#114; &#97; &#110; &#115; &#97; &#107; &#115; &#105;: ${transactionDate}\n\n*&#68; &#97; &#102; &#116; &#97; &#114; &#32; &#80; &#114; &#111; &#100; &#117; &#107;*:\n`;
 
             tableData.forEach((item, index) => {
-                whatsappMessage += `Item ${index + 1}:\n`;
-                whatsappMessage += `Produk: ${item.productName}\n`;
-                whatsappMessage += `Harga: ${item.productPrice}\n\n`;
+                whatsappMessage += `&#73; &#116; &#101; &#109; ${index + 1}:\n`;
+                whatsappMessage += `&#80; &#114; &#111; &#100; &#117; &#107;: ${item.productName}\n`;
+                whatsappMessage += `&#72; &#97; &#114; &#103; &#97;: ${item.productPrice}\n\n`;
             });
 
             // Add total price, discount, down payment, and final price to the message
             const finalPrice = totalPrice - discountAmount - downPaymentAmount;
-            whatsappMessage += `Total Harga: Rp ${totalPrice.toFixed(2)}\n`;
-            whatsappMessage += `Discount: Rp ${discountAmount.toFixed(2)}\n`;
-            whatsappMessage += `Down Payment (DP): Rp ${downPaymentAmount.toFixed(2)}\n`;
-            whatsappMessage += `Harga Akhir: Rp ${finalPrice.toFixed(2)}\n\n`;
-            whatsappMessage += `_Terimakasih sudah membeli produk kami_`;
+            whatsappMessage += `&#84; &#111; &#116; &#97; &#108; &#32; &#72; &#97; &#114; &#103; &#97; &#58; &#32; &#82; &#112; ${totalPrice.toFixed(2)}\n`;
+            whatsappMessage += `&#68; &#105; &#115; &#99; &#111; &#117; &#110; &#116; &#58; &#32; &#82; &#112; ${discountAmount.toFixed(2)}\n`;
+            whatsappMessage += `&#68; &#111; &#119; &#110; &#32; &#80; &#97; &#121; &#109; &#101; &#110; &#116; &#32; &#40; &#68; &#80; &#41; &#58; &#32; &#82; &#112; ${downPaymentAmount.toFixed(2)}\n`;
+            whatsappMessage += `&#72; &#97; &#114; &#103; &#97; &#32; &#65; &#107; &#104; &#105; &#114; &#58; &#32; &#82; &#112; ${finalPrice.toFixed(2)}\n\n`;
+            whatsappMessage += `_&#84; &#101; &#114; &#105; &#109; &#97; &#107; &#97; &#115; &#105; &#104; &#32; &#115; &#117; &#100; &#97; &#104; &#32; &#109; &#101; &#109; &#98; &#101; &#108; &#105; &#32; &#112; &#114; &#111; &#100; &#117; &#107; &#32; &#107; &#97; &#109; &#105;_`;
 
             // Encode the message for WhatsApp URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
